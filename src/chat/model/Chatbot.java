@@ -44,11 +44,11 @@ public class Chatbot
 	private void buildVerbs()
 	{
 		verbs[0] = "Like";
-		verbs[1] = "No Like";
+		verbs[1] = "Don't Like";
 		verbs[2] = "ambivalent about";
 		verbs[3] = "am thinking about";
 		verbs[4] = "am eating";
-		verbs[5] = "am indesisive";
+		verbs[5] = "am indesisive about";
 		verbs[6] = "am riding";
 		verbs[7] = "am pooping";
 		verbs[8] = "am swimming in";
@@ -73,11 +73,11 @@ public class Chatbot
 	
 	private void buildMovieList()
 	{
-		Movie StarWars = new Movie("Star Wars");
-		Movie StarTrek = new Movie("Star Trek");
-		Movie Hobbit = new Movie("Hobbit");
-		Movie LordOfTheRings = new Movie("Lord Of The Rings");
-		Movie HungerGames = new Movie("Hunger Games");
+		Movie StarWars = new Movie(" Star Wars");
+		Movie StarTrek = new Movie(" Star Trek");
+		Movie Hobbit = new Movie(" Hobbit");
+		Movie LordOfTheRings = new Movie(" Lord Of The Rings");
+		Movie HungerGames = new Movie(" Hunger Games");
 		movieList.add(HungerGames);
 		movieList.add(StarTrek);
 		movieList.add(Hobbit);
@@ -90,29 +90,30 @@ public class Chatbot
 		shoppingList.add("snacks");
 		shoppingList.add("veggies");
 		shoppingList.add("protein");
+		shoppingList.add("apples");
 		shoppingList.add("gross things");
 	}
 	
 	private void buildCuteAnimals()
 	{
 		cuteAnimalMemes.add("otter");
-		cuteAnimalMemes.add("FLOOFER");
+		cuteAnimalMemes.add("floofer");
 		cuteAnimalMemes.add("kittie");
 		cuteAnimalMemes.add("pupper");
 	}
 	
 	private void buildQuestions()
 	{
-		questions[0] = "What is your name?";
-		questions[1] = "What is your last name?";
-		questions[2] = "What is your mom's name?";
-		questions[3] = "What is your dad's name?";
-		questions[4] = "What is your sister's name?";
-		questions[5] = "What is your pet's name?";
-		questions[6] = "What is your social security?";
-		questions[7] = "What is your annual net worth?";
-		questions[8] = "What is your credit card number?";
-		questions[9] = "What is your address?";
+		questions[0] = "What is your name? ";
+		questions[1] = "What is your last name? ";
+		questions[2] = "What is your mom's name? ";
+		questions[3] = "What is your dad's name? ";
+		questions[4] = "What is your sister's name? ";
+		questions[5] = "What is your pet's name? ";
+		questions[6] = "What is your social security? ";
+		questions[7] = "What is your annual net worth? ";
+		questions[8] = "What is your credit card number? ";
+		questions[9] = "What is your address? ";
 	}
 	
 	public String processConversation(String input)
@@ -127,19 +128,28 @@ public class Chatbot
 	public String buildChatBotResponce()
 
 	{
-		String responce = "I ";
+		String response = "I ";
 		int random = (int) (Math.random() *verbs.length);
 		
-		responce += verbs[random];
+		response += verbs[random];
 		
 		random = (int) (Math.random() * topics.length);
 		
-		responce += " " +topics[random] + ".\n";
+		response += " " +topics[random] + ".\n";
 		
 		random =(int) (Math.random() * questions.length);
-		responce += questions[random];
+		response += questions[random]+"\n";
 		
-		return responce;
+		
+		random=(int) (Math.random()*2);
+		
+		if(random%2==0)
+		{
+			random =(int) (Math.random()* movieList.size());
+			response+=movieList.get(random).getTitle() + " is a great movie!";
+		}
+	
+		return response;
 	}
 	
 	public boolean lengthChecker(String input)
@@ -236,7 +246,19 @@ public class Chatbot
 
 	public boolean keyboardMashChecker(String sample)
 	{
+		if(sample.contains("asd")||sample.contains("sdf")||sample.contains("SDF")
+		||sample.contains("dfg")||sample.contains("cvb")||sample.contains(",./")
+		||sample.contains("kjh")||sample.contains("DFG")||sample.contains("CVB")
+		||sample.contains("KJH"))
+		{
+			return true;
+		}
 		return false;
+	}
+	public String toString()
+	{
+		String str ="";
+		return str;
 	}
 	
 	public List<Movie> getMovieList()
@@ -256,7 +278,7 @@ public class Chatbot
 
 	public String [] getQuestions()
 	{
-		return null;
+		return questions;
 	}
 	
 	public String[] getVerbs()

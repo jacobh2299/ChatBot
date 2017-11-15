@@ -1,4 +1,6 @@
 package chat.view;
+import java.awt.Color;
+
 import javax.swing.*;
 import chat.controller.ChatbotController;
 
@@ -25,12 +27,23 @@ public class ChatPanel extends JPanel
 		appLayout = new SpringLayout();
 		
 		
+		
 		setupPanel();
 		setupLayout();
 		setupListerners();
 
 	}
-
+	
+	private void setupPanel() 
+	{
+		this.setBackground(Color.BLACK);	
+		this.setLayout(appLayout);
+		this.add(chatButton);
+		this.add(inputField);
+		this.add(chatArea);
+		
+	}
+	
 	private void setupListerners() 
 	{
 		
@@ -39,15 +52,17 @@ public class ChatPanel extends JPanel
 
 	private void setupLayout() 
 	{
-		
+		appLayout.putConstraint(SpringLayout.NORTH, chatArea, 30, SpringLayout.NORTH, this);
+		appLayout.putConstraint(SpringLayout.WEST, chatArea, 0, SpringLayout.WEST, inputField);
+		appLayout.putConstraint(SpringLayout.EAST, chatArea, 0, SpringLayout.EAST, chatButton);
+		appLayout.putConstraint(SpringLayout.WEST, inputField, 10, SpringLayout.WEST, this);
+		appLayout.putConstraint(SpringLayout.EAST, chatButton, -10, SpringLayout.EAST, this);
+		appLayout.putConstraint(SpringLayout.NORTH, chatButton, 0, SpringLayout.NORTH, inputField);
+		appLayout.putConstraint(SpringLayout.SOUTH, inputField, -29, SpringLayout.SOUTH, this);
 		
 	}
 
-	private void setupPanel() 
-	{
-		
-		
-	}
+	
 	
 	
 	

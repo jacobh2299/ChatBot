@@ -3,7 +3,11 @@ package chat.model;
 import java.util.List;
 import java.time.LocalTime;
 import java.util.ArrayList;
-
+/**
+ * The chatbot model including all the methods needed for talking back to the user
+ * @author jhar3975
+ *
+ */
 public class Chatbot
 {
 	private List<Movie> movieList;
@@ -17,7 +21,10 @@ public class Chatbot
 	private String content;
 	private String intro;
 	private LocalTime currentTime;
-	
+	/**
+	 * builds chatbot calls helper methods
+	 * @param username
+	 */
 	public Chatbot(String username)
 	{
 		this.movieList = new ArrayList<Movie>();
@@ -40,7 +47,9 @@ public class Chatbot
 		buildMovieList();
 		buildCuteAnimals();
 	}
-	
+	/**
+	 * Creates options for the chatbot to say
+	 */
 	private void buildVerbs()
 	{
 		verbs[0] = "Like";
@@ -54,7 +63,9 @@ public class Chatbot
 		verbs[8] = "am swimming in";
 		verbs[9] = "am schwifty about";
 	}
-				
+	/**
+	 * Creates the options
+	 */
 	private void buildTopics()
 	{
 		topics[0] = "Apple Sauce";
@@ -70,7 +81,9 @@ public class Chatbot
 	{
 		
 	}
-	
+	/**
+	 * Creates the movie lists that the chatbot can pull from
+	 */
 	private void buildMovieList()
 	{
 		Movie StarWars = new Movie(" Star Wars");
@@ -84,7 +97,9 @@ public class Chatbot
 		movieList.add(LordOfTheRings);
 		movieList.add(StarWars);
 	}
-	
+	/**
+	 * Builds the shopping list items
+	 */
 	private void buildShoppingList()
 	{
 		shoppingList.add("snacks");
@@ -93,7 +108,9 @@ public class Chatbot
 		shoppingList.add("apples");
 		shoppingList.add("gross things");
 	}
-	
+	/**
+	 * Builds the animal list that the chat bot can talk about
+	 */
 	private void buildCuteAnimals()
 	{
 		cuteAnimalMemes.add("otter");
@@ -147,6 +164,21 @@ public class Chatbot
 		{
 			random =(int) (Math.random()* movieList.size());
 			response+=movieList.get(random).getTitle() + " is a great movie!";
+		}
+		int followup = (int)(Math.random()*5);
+		switch(followup) {
+		case 0:
+			response += followUps[0] + "\n";
+			break;
+		case 3:
+			response += followUps[1] + "\n";
+		case 1:
+			response += followUps[2] + "\n";
+			break;
+		default:
+			response +=followUps[4] + "\n";
+			response +=followUps[3] + "\n";
+			break;
 		}
 	
 		return response;

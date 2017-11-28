@@ -1,9 +1,20 @@
 package chat.view;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-import javax.swing.*;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.SpringLayout;
+
 import chat.controller.ChatbotController;
-
+/**
+ * 
+ * @author Jacob Harris
+ * @version 21/11/17 1.2 
+ */
 
 public class ChatPanel extends JPanel
 {
@@ -13,6 +24,7 @@ public class ChatPanel extends JPanel
 	private JTextField inputField;
 	private JTextArea chatArea;
 	private SpringLayout appLayout;
+	private JButton checkerButton;
 	
 	public ChatPanel(ChatbotController appController)
 	{
@@ -60,10 +72,19 @@ public class ChatPanel extends JPanel
 		appLayout.putConstraint(SpringLayout.NORTH, chatButton, 0, SpringLayout.NORTH, inputField);
 		appLayout.putConstraint(SpringLayout.SOUTH, inputField, -29, SpringLayout.SOUTH, this);
 		
-	}
+	
 
+	checkerButton.addActionListener(new ActionListener()
+	{
+		public void actionPerformed(ActionEvent click)
+		{
+			String userText = inputField.getText();
+			String displayText = appController.useCheckers(userText);
+			chatArea.append(displayText);
+			inputField.setText("");
+		}
+	});
 	
 	
 	
-	
-}
+}}

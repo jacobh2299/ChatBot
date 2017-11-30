@@ -198,7 +198,11 @@ public class Chatbot
 	
 	public boolean htmlTagChecker(String input)
 	{
-		return false;
+		if(input.contains("<>") || input.contains("< >") || input.contains("<B> ") || input.contains("<A HREF> </a>"))
+		{
+			return false;
+		}
+		return true;
 	}
 	
 	public boolean userNameChecker(String input)

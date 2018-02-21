@@ -1,5 +1,11 @@
 package chat.view;
 import javax.swing.*;
+/**
+ * 
+ * @author Jacob Harris
+ * This is the popup display that creates the window for java popups to run on and also names it
+ *
+ */
 
 public class PopupDisplay 
 {

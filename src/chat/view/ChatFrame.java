@@ -1,5 +1,9 @@
 package chat.view;
 import javax.swing.*;
+/**
+ * Jacob Harris
+ * This is the chatframe. It creates the frame that java gui needs to run on.
+ */
 
 import chat.controller.ChatbotController;
 

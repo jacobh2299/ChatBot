@@ -32,9 +32,9 @@ public class Chatbot
 		this.cuteAnimalMemes = new ArrayList<String>();
 		this.questions = new String [10];
 		this.username = username;
-		this.content = null;
+		this.content = "";
 		this.intro = null;
-		this.currentTime = null;
+		this.currentTime = LocalTime.now();
 		this.topics = new String[7];
 		this.verbs = new String [10];
 		this.followUps = new String[5];
@@ -91,11 +91,14 @@ public class Chatbot
 		Movie Hobbit = new Movie(" Hobbit");
 		Movie LordOfTheRings = new Movie(" Lord Of The Rings");
 		Movie HungerGames = new Movie(" Hunger Games");
+		Movie DeathGame = new Movie(" Death Game");
+
 		movieList.add(HungerGames);
 		movieList.add(StarTrek);
 		movieList.add(Hobbit);
 		movieList.add(LordOfTheRings);
 		movieList.add(StarWars);
+		movieList.add(DeathGame);
 	}
 	/**
 	 * Builds the shopping list items
@@ -107,6 +110,13 @@ public class Chatbot
 		shoppingList.add("protein");
 		shoppingList.add("apples");
 		shoppingList.add("gross things");
+		shoppingList.add("pinapple");
+		shoppingList.add("cabage");
+		shoppingList.add("poptart");
+		shoppingList.add("bullballs");
+		shoppingList.add("Isaac's toenail");
+		shoppingList.add("Iphone X -jimmy");
+
 	}
 	/**
 	 * Builds the animal list that the chat bot can talk about
@@ -118,25 +128,32 @@ public class Chatbot
 		cuteAnimalMemes.add("kittie");
 		cuteAnimalMemes.add("pupper");
 	}
-	
+	/**
+	 * Builds questions for the chatbot to ask
+	 */
 	private void buildQuestions()
 	{
-		questions[0] = "What is your name? ";
-		questions[1] = "What is your last name? ";
-		questions[2] = "What is your mom's name? ";
-		questions[3] = "What is your dad's name? ";
-		questions[4] = "What is your sister's name? ";
-		questions[5] = "What is your pet's name? ";
-		questions[6] = "What is your social security? ";
-		questions[7] = "What is your annual net worth? ";
-		questions[8] = "What is your credit card number? ";
-		questions[9] = "What is your address? ";
+		questions[0] = "What is your name?";
+		questions[1] = "What is your last name?";
+		questions[2] = "What is your mom's name?";
+		questions[3] = "What is your dad's name?";
+		questions[4] = "What is your sister's name?";
+		questions[5] = "What is your pet's name?";
+		questions[6] = "What is your social security?";
+		questions[7] = "What is your annual net worth?";
+		questions[8] = "What is your credit card number?";
+		questions[9] = "What is your address?";
 	}
-	
+	/**
+	 * generates the response for the conversation
+	 * @param input
+	 * @return
+	 */
 	public String processConversation(String input)
 	{
 		String chatbotResponce = "";
-		chatbotResponce += "You said:"+"\n"+input+"\n";
+		chatbotResponce += currentTime.getHour() + ":" + currentTime.getMinute() + " ";
+		chatbotResponce += "You Said:" +"\n" + input + "\n";
 		chatbotResponce += buildChatBotResponce();
 		
 		return chatbotResponce;
@@ -183,7 +200,11 @@ public class Chatbot
 	
 		return response;
 	}
-	
+	/**
+	 * checks the length of the input
+	 * @param input
+	 * @return
+	 */
 	public boolean lengthChecker(String input)
 	{
 		boolean validLength = false;
@@ -195,16 +216,33 @@ public class Chatbot
 		
 		return validLength;
 	}
-	
+	/**
+	 * checks the HTML length and if it's valid
+	 * @param input
+	 * @return
+	 */
 	public boolean htmlTagChecker(String input)
 	{
-		if(input.contains("<>") || input.contains("< >") || input.contains("<B> ") || input.contains("<A HREF> </a>"))
+		if(input.contains("<P>"))
+		{
+			return true;
+		}
+		if(input.contains("HREF")&&(!input.contains("=")))
 		{
 			return false;
 		}
-		return true;
+		if(input.indexOf(">")<input.lastIndexOf(">")&&input.indexOf("<")<input.lastIndexOf("<"))
+		{
+			return true;
+		}
+		
+		return false;
 	}
-	
+	/**
+	 * checks your inputted username
+	 * @param input
+	 * @return
+	 */
 	public boolean userNameChecker(String input)
 	{
 		if(input == null || input.length() == 0 || !input.substring(0,  1).equals("@"))

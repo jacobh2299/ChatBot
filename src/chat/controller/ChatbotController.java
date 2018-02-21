@@ -66,7 +66,17 @@ public class ChatbotController {
 		return response;
 	}
 	
-	
+	public String interactWithChatbot(String input)
+	{
+		String chatbotSays = "";
+		
+		if(chatbot.quitChecker(input))
+		{
+			
+		}
+		chatbotSays += chatbot.processConversation(input);
+		return chatbotSays;
+	}
 	
 	
 	

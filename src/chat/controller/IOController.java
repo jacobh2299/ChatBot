@@ -46,7 +46,7 @@ public class IOController
 			app.handleErrors(error);
 		}
 	}
-	//Static files call things externally
+	
 	public static String loadFromFile(ChatbotController app, String filename)
 	{
 		String results = "";

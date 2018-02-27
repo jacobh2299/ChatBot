@@ -32,7 +32,12 @@ public class ChatbotController {
  */
 	public void start() 
 	{
-		String responce = display.collectResponse("What do you want to talk about?");
+		String results = IOController.loadFromFile(this, "commonWords.txt");
+		
+		IOController.saveToFile(this, results, "readText.txt");
+		
+		
+//		String responce = display.collectResponse("What do you want to talk about?");
 //		while(chatbot.lengthChecker(responce) && !chatbot.quitChecker(responce))
 //		{
 //			responce = popupChat(responce);
